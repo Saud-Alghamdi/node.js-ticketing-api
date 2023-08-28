@@ -1,1 +1,3 @@
-console.log("This is the entry point of my app");
+const UserModel = require('./models/UserModel')
+
+console.log(UserModel);
