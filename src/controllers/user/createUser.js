@@ -10,21 +10,21 @@ async function createUser(req, res) {
 
   if (!nameValidation.isValid) {
     return res.status(400).json({
-      status: "fail",
+      isSuccess: false,
       message: nameValidation.message,
     });
   }
 
   if (!emailValidation.isValid) {
     return res.status(400).json({
-      status: "fail",
+      isSuccess: false,
       message: emailValidation.message,
     });
   }
 
   if (!roleValidation.isValid) {
     return res.status(400).json({
-      status: "fail",
+      isSuccess: false,
       message: roleValidation.message,
     });
   }
@@ -37,7 +37,7 @@ async function createUser(req, res) {
     });
 
     res.status(201).json({
-      status: "success",
+      isSuccess: true,
       message: "User created successfully!",
       data: {
         user: newUser,
@@ -45,8 +45,8 @@ async function createUser(req, res) {
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
-      message: error,
+      isSuccess: false,
+      message: error.message,
     });
   }
 }

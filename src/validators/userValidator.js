@@ -57,8 +57,22 @@ function validateRole(role) {
   return { isValid: true };
 }
 
+async function validateUserExists(id) {
+  const user = await User.findOne({ where: { id: id } });
+
+  if (!user) {
+    return {
+      isValid: false,
+      message: "User does not exist.",
+    };
+  }
+
+  return { isValid: true };
+}
+
 module.exports = {
   validateName,
   validateEmail,
   validateRole,
+  validateUserExists,
 };
