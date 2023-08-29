@@ -11,14 +11,20 @@ async function updateUser(req, res) {
 
     let updateData = {};
 
-    validateName(name);
-    updateData.name = name;
+    if (name) {
+      validateName(name);
+      updateData.name = name;
+    }
 
-    await validateEmail(email);
-    updateData.email = email;
+    if (email) {
+      await validateEmail(email);
+      updateData.email = email;
+    }
 
-    validateRole(role);
-    updateData.role = role;
+    if (role) {
+      validateRole(role);
+      updateData.role = role;
+    }
 
     await User.update(updateData, { where: { id: id } });
 
@@ -34,4 +40,4 @@ async function updateUser(req, res) {
   }
 }
 
-module.exports = [checkFieldsPresent(["name", "email", "role"]), updateUser];
+module.exports = [checkFieldsPresent(["name", "email", "role"], 1), updateUser];

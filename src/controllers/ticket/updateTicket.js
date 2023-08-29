@@ -15,11 +15,15 @@ async function updateTicket(req, res) {
 
     let updateData = {};
 
-    validateTitle(title);
-    updateData.title = title;
+    if (title) {
+      validateTitle(title);
+      updateData.title = title;
+    }
 
-    validateDescription(description);
-    updateData.description = description;
+    if (description) {
+      validateDescription(description);
+      updateData.description = description;
+    }
 
     await Ticket.update(updateData, { where: { id: id } });
 
@@ -32,4 +36,4 @@ async function updateTicket(req, res) {
   }
 }
 
-module.exports = [checkFieldsPresent(["title", "description", "createdBy", "assignedTo"]), updateTicket];
+module.exports = [checkFieldsPresent(["title", "description"], 1), updateTicket];
