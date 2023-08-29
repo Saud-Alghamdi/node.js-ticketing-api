@@ -19,7 +19,8 @@ User.init(
       unique: true,
     },
     role: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM,
+      values: ["user", "admin", "superadmin"],
       allowNull: false,
     },
   },
