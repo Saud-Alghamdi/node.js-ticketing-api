@@ -58,6 +58,104 @@ In our application, we have two models: `User` and `Ticket`.
 - `PUT /tickets/:id`: Update ticket details.
 - `DELETE /tickets/:id`: Delete a ticket.
 
+## API Requests
+
+All requests to the API should be made with an HTTP client like curl, Postman, or any other client you prefer.
+
+### Users ###:
+
+- Create a New User (POST /users)
+
+This request must contain all the required fields of the User model except those that are auto-generated or have default values. Here is an example of a valid request body.
+
+`POST http://localhost:3000/users`
+
+```json
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "role": "user"
+}
+```
+
+- Get a List of All Users (GET /users)
+
+This request does not require any parameters. Here is an example of how to make this request.
+
+`GET http://localhost:3000/users`
+
+- Get Details of a Specific User by ID (GET /users/:id)
+
+This request requires the user ID in the URL path. For example, to get details of the user with ID 1.
+
+`GET http://localhost:3000/users/1`
+
+- Update User Details (PUT /users/:id)
+
+The user ID should be provided in the URL path. The fields to be updated should be provided in the request body (At least one field must be present).
+
+`PUT http://localhost:3000/users/1`
+
+```json
+{
+  "name": "John Doe",
+  "role": "admin"
+}
+```
+
+- Delete a User (DELETE /users/:id)
+
+Replace :id with the ID of the user you want to delete.
+
+`DELETE http://localhost:3000/users/1`
+
+### Tickets ###:
+
+- Create a New Ticket (POST /tickets)
+
+The request must contain all the required fields of the Ticket model except those that are auto-generated or have default values.
+
+`POST http://localhost:3000/tickets`
+
+```json
+{
+  "title": "This is a title.",
+  "description": "This is a description.",
+  "createdBy": 2,
+  "assignedTo": 4
+}
+```
+
+- Get a List of All Tickets (GET /tickets)
+
+No request body is required for this endpoint.
+
+`GET http://localhost:3000/tickets`
+
+- Get Details of a Specific Ticket by ID (GET /tickets/:id)
+
+Replace :id with the ID of the ticket you want to get details of.
+
+`GET http://localhost:3000/tickets/1`
+
+- Update Ticket Details (PUT /tickets/:id)
+
+The ticket ID should be provided in the URL path. The fields to be updated should be provided in the request body (At least one field must be present).
+
+`PUT http://localhost:3000/tickets/1`
+
+```json
+{
+  "title": "Changing the title"
+}
+```
+
+- Delete a Ticket (DELETE /tickets/:id)
+
+Replace :id with the ID of the ticket you want to delete.
+
+`DELETE http://localhost:3000/tickets/1`
+
 ## API Responses
 
 Responses from the API come in the following format:
