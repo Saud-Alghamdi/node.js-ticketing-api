@@ -81,9 +81,9 @@ In cases where there is no data to return (e.g., deleting a ticket), the respons
 
 ## Setup and Installation
 
-- Setup and Installation
-- Clone this repository: git clone https://github.com/Saud-Alghamdi/node.js-ticketing-api
-- Install dependencies: npm install
-- Configure your database settings in src/models/dbConfig.js
-- Run database migrations: npx sequelize-cli db:migrate
-- Start the server: npm start
+1. Setup and Installation
+2. Clone this repository: `git clone https://github.com/Saud-Alghamdi/node.js-ticketing-api`
+3. Install dependencies: `npm install`
+4. Configure your database settings in `src/models/dbConfig.js`
+5. Run database migrations: `npx sequelize-cli db:migrate`
+6. Start the server: `npm start`
