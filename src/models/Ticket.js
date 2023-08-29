@@ -1,4 +1,5 @@
 const { db, Model, DataTypes } = require("./dbConfig");
+const User = require("./User"); // Need user model for reference in createdBy column
 
 // Create Ticket table in DB if it doesn't exist
 db.sync()
@@ -32,7 +33,7 @@ Ticket.init(
     assignedTo: {
       type: DataTypes.INTEGER,
       references: {
-        model: Ticket,
+        model: User,
         key: "id",
       },
     },
