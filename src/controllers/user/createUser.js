@@ -1,5 +1,6 @@
 const User = require("../../models/User");
 const { validateName, validateEmail, validateRole } = require("../../validators/userValidator");
+const checkFieldsPresent = require("../../middleware/checkFieldsPresent");
 
 async function createUser(req, res) {
   const { name, email, role } = req.body;
@@ -30,4 +31,4 @@ async function createUser(req, res) {
   }
 }
 
-module.exports = createUser;
+module.exports = [checkFieldsPresent(["name", "email", "role"]), createUser];

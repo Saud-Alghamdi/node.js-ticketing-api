@@ -1,6 +1,7 @@
 const Ticket = require("../../models/Ticket");
 const { validateTitle, validateDescription } = require("../../validators/ticketValidator");
 const { validateUserExists } = require("../../validators/userValidator");
+const checkFieldsPresent = require("../../middleware/checkFieldsPresent");
 
 async function createTicket(req, res) {
   const { title, description, createdBy, assignedTo } = req.body;
@@ -30,4 +31,4 @@ async function createTicket(req, res) {
   }
 }
 
-module.exports = createTicket;
+module.exports = [checkFieldsPresent(["title", "description", "createdBy", "assignedTo"]), createTicket];

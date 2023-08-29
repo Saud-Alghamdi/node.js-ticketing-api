@@ -1,5 +1,6 @@
 const User = require("../../models/User");
 const { validateUserExists, validateName, validateEmail, validateRole } = require("../../validators/userValidator");
+const checkFieldsPresent = require("../../middleware/checkFieldsPresent");
 
 async function updateUser(req, res) {
   const id = Number(req.params.id);
@@ -33,4 +34,4 @@ async function updateUser(req, res) {
   }
 }
 
-module.exports = updateUser;
+module.exports = [checkFieldsPresent(["name", "email", "role"]), updateUser];

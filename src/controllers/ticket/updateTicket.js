@@ -1,10 +1,10 @@
 const Ticket = require("../../models/Ticket");
 const { validateTitle, validateDescription } = require("../../validators/ticketValidator");
-const { validateUserExists } = require("../../validators/userValidator");
+const checkFieldsPresent = require("../../middleware/checkFieldsPresent");
 
 async function updateTicket(req, res) {
   const { id } = req.params;
-  const { title, description, createdBy, assignedTo } = req.body;
+  const { title, description } = req.body;
 
   try {
     const ticket = await Ticket.findOne({ where: { id: id } });
@@ -21,12 +21,6 @@ async function updateTicket(req, res) {
     validateDescription(description);
     updateData.description = description;
 
-    await validateUserExists(createdBy);
-    updateData.createdBy = createdBy;
-
-    await validateUserExists(assignedTo);
-    updateData.assignedTo = assignedTo;
-
     await Ticket.update(updateData, { where: { id: id } });
 
     res.status(200).json({
@@ -38,4 +32,4 @@ async function updateTicket(req, res) {
   }
 }
 
-module.exports = updateTicket;
+module.exports = [checkFieldsPresent(["title", "description", "createdBy", "assignedTo"]), updateTicket];
