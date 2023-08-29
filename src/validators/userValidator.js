@@ -12,7 +12,7 @@ const User = require("../models/User");
 
 const nameRegex = /^[A-Za-z]{3,20}$/;
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const roleRegex = /^(user|admin|guest)$/;
+const roleRegex = /^(user|admin|superadmin)$/;
 
 function validateName(name) {
   if (!nameRegex.test(name)) {
@@ -50,7 +50,7 @@ function validateRole(role) {
   if (!roleRegex.test(role)) {
     return {
       isValid: false,
-      message: "Role must be either user, admin, or guest.",
+      message: "Role must be either user, admin, or superadmin.",
     };
   }
 
