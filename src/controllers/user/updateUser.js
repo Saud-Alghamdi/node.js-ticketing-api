@@ -10,20 +10,14 @@ async function updateUser(req, res) {
 
     let updateData = {};
 
-    if (name !== undefined) {
-      validateName(name);
-      updateData.name = name;
-    }
+    validateName(name);
+    updateData.name = name;
 
-    if (email !== undefined) {
-      await validateEmail(email);
-      updateData.email = email;
-    }
+    await validateEmail(email);
+    updateData.email = email;
 
-    if (role !== undefined) {
-      validateRole(role);
-      updateData.role = role;
-    }
+    validateRole(role);
+    updateData.role = role;
 
     await User.update(updateData, { where: { id: id } });
 
