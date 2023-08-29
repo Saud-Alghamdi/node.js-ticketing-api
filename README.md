@@ -44,19 +44,19 @@ In our application, we have two models: `User` and `Ticket`.
 
 ### Users
 
-- `POST /users`: Create a new user.
-- `GET /users`: Get a list of all users.
-- `GET /users/:id`: Get details of a specific user by ID.
-- `PUT /users/:id`: Update user details.
-- `DELETE /users/:id`: Delete a user.
+- `POST /api/users`: Create a new user.
+- `GET /api/users`: Get a list of all users.
+- `GET /api/users/:id`: Get details of a specific user by ID.
+- `PUT /api/users/:id`: Update user details.
+- `DELETE /api/users/:id`: Delete a user.
 
 ### Tickets
 
-- `POST /tickets`: Create a new ticket.
-- `GET /tickets`: Get a list of all tickets.
-- `GET /tickets/:id`: Get details of a specific ticket by ID.
-- `PUT /tickets/:id`: Update ticket details.
-- `DELETE /tickets/:id`: Delete a ticket.
+- `POST /api/tickets`: Create a new ticket.
+- `GET /api/tickets`: Get a list of all tickets.
+- `GET /api/tickets/:id`: Get details of a specific ticket by ID.
+- `PUT /api/tickets/:id`: Update ticket details.
+- `DELETE /api/tickets/:id`: Delete a ticket.
 
 ## API Requests
 
@@ -68,7 +68,7 @@ All requests to the API should be made with an HTTP client like curl, Postman, o
 
 This request must contain all the required fields of the User model except those that are auto-generated or have default values. Here is an example of a valid request body.
 
-`POST http://localhost:3000/users`
+`POST http://localhost:3000/api/users`
 
 ```json
 {
@@ -82,19 +82,19 @@ This request must contain all the required fields of the User model except those
 
 This request does not require any parameters. Here is an example of how to make this request.
 
-`GET http://localhost:3000/users`
+`GET http://localhost:3000/api/users`
 
 - Get Details of a Specific User by ID (GET /users/:id)
 
 This request requires the user ID in the URL path. For example, to get details of the user with ID 1.
 
-`GET http://localhost:3000/users/1`
+`GET http://localhost:3000/api/users/1`
 
 - Update User Details (PUT /users/:id)
 
 The user ID should be provided in the URL path. The fields to be updated should be provided in the request body (At least one field must be present).
 
-`PUT http://localhost:3000/users/1`
+`PUT http://localhost:3000/api/users/1`
 
 ```json
 {
@@ -107,7 +107,7 @@ The user ID should be provided in the URL path. The fields to be updated should 
 
 Replace :id with the ID of the user you want to delete.
 
-`DELETE http://localhost:3000/users/1`
+`DELETE http://localhost:3000/api/users/1`
 
 **Tickets**:
 
@@ -115,7 +115,7 @@ Replace :id with the ID of the user you want to delete.
 
 The request must contain all the required fields of the Ticket model except those that are auto-generated or have default values.
 
-`POST http://localhost:3000/tickets`
+`POST http://localhost:3000/api/tickets`
 
 ```json
 {
@@ -130,19 +130,19 @@ The request must contain all the required fields of the Ticket model except thos
 
 No request body is required for this endpoint.
 
-`GET http://localhost:3000/tickets`
+`GET http://localhost:3000/api/tickets`
 
 - Get Details of a Specific Ticket by ID (GET /tickets/:id)
 
 Replace :id with the ID of the ticket you want to get details of.
 
-`GET http://localhost:3000/tickets/1`
+`GET http://localhost:3000/api/tickets/1`
 
 - Update Ticket Details (PUT /tickets/:id)
 
 The ticket ID should be provided in the URL path. The fields to be updated should be provided in the request body (At least one field must be present).
 
-`PUT http://localhost:3000/tickets/1`
+`PUT http://localhost:3000/api/tickets/1`
 
 ```json
 {
@@ -154,7 +154,7 @@ The ticket ID should be provided in the URL path. The fields to be updated shoul
 
 Replace :id with the ID of the ticket you want to delete.
 
-`DELETE http://localhost:3000/tickets/1`
+`DELETE http://localhost:3000/api/tickets/1`
 
 ## API Responses
 
