@@ -5,51 +5,26 @@ async function updateUser(req, res) {
   const id = Number(req.params.id);
   const { name, email, role } = req.body;
 
-  const userExistsValidation = await validateUserExists(id);
-
-  if (!userExistsValidation.isValid) {
-    return res.status(404).json({
-      isSuccess: false,
-      message: userExistsValidation.message,
-    });
-  }
-
-  let updateData = {};
-
-  if (name !== undefined) {
-    const nameValidation = validateName(name);
-    if (!nameValidation.isValid) {
-      return res.status(400).json({
-        isSuccess: false,
-        message: nameValidation.message,
-      });
-    }
-    updateData.name = name;
-  }
-
-  if (email !== undefined) {
-    const emailValidation = await validateEmail(email);
-    if (!emailValidation.isValid) {
-      return res.status(400).json({
-        isSuccess: false,
-        message: emailValidation.message,
-      });
-    }
-    updateData.email = email;
-  }
-
-  if (role !== undefined) {
-    const roleValidation = validateRole(role);
-    if (!roleValidation.isValid) {
-      return res.status(400).json({
-        isSuccess: false,
-        message: roleValidation.message,
-      });
-    }
-    updateData.role = role;
-  }
-
   try {
+    await validateUserExists(id);
+
+    let updateData = {};
+
+    if (name !== undefined) {
+      validateName(name);
+      updateData.name = name;
+    }
+
+    if (email !== undefined) {
+      await validateEmail(email);
+      updateData.email = email;
+    }
+
+    if (role !== undefined) {
+      validateRole(role);
+      updateData.role = role;
+    }
+
     await User.update(updateData, { where: { id: id } });
 
     res.status(200).json({

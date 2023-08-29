@@ -4,32 +4,11 @@ const { validateName, validateEmail, validateRole } = require("../../validators/
 async function createUser(req, res) {
   const { name, email, role } = req.body;
 
-  const nameValidation = validateName(name);
-  const emailValidation = await validateEmail(email);
-  const roleValidation = validateRole(role);
-
-  if (!nameValidation.isValid) {
-    return res.status(400).json({
-      isSuccess: false,
-      message: nameValidation.message,
-    });
-  }
-
-  if (!emailValidation.isValid) {
-    return res.status(400).json({
-      isSuccess: false,
-      message: emailValidation.message,
-    });
-  }
-
-  if (!roleValidation.isValid) {
-    return res.status(400).json({
-      isSuccess: false,
-      message: roleValidation.message,
-    });
-  }
-
   try {
+    validateName(name);
+    await validateEmail(email);
+    validateRole(role);
+
     const newUser = await User.create({
       name,
       email,
