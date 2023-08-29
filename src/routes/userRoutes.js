@@ -6,14 +6,14 @@ const updateUser = require("../controllers/user/updateUser");
 const getUser = require("../controllers/user/getUser");
 const getUsers = require("../controllers/user/getUsers");
 
-router.post("/users", async (req, res) => await createUser(req, res));
+router.post("/users", createUser);
 
-router.delete("/users/:id", async (req, res) => await deleteUser(req, res));
+router.delete("/users/:id", deleteUser);
 
-router.put("/users/:id", async (req, res) => await updateUser(req, res));
+router.put("/users/:id", updateUser);
 
-router.get("/users/:id", async (req, res) => await getUser(req, res));
+router.get("/users/:id", getUser);
 
-router.get("/users", async (req, res) => await getUsers(req, res));
+router.get("/users", getUsers);
 
 module.exports = router;
