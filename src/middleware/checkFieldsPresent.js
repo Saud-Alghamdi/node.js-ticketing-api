@@ -1,4 +1,4 @@
-function checkAllFieldsPresent(requiredFields) {
+function checkFieldsPresent(requiredFields) {
   return function (req, res, next) {
     for (const field of requiredFields) {
       if (!req.body[field]) {
@@ -9,4 +9,4 @@ function checkAllFieldsPresent(requiredFields) {
   };
 }
 
-module.exports = checkAllFieldsPresent;
+module.exports = checkFieldsPresent;
