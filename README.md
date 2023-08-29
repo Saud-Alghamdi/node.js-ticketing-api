@@ -62,7 +62,7 @@ In our application, we have two models: `User` and `Ticket`.
 
 All requests to the API should be made with an HTTP client like curl, Postman, or any other client you prefer.
 
-### Users ###:
+**Users**:
 
 - Create a New User (POST /users)
 
@@ -109,7 +109,7 @@ Replace :id with the ID of the user you want to delete.
 
 `DELETE http://localhost:3000/users/1`
 
-### Tickets ###:
+**Tickets**:
 
 - Create a New Ticket (POST /tickets)
 
