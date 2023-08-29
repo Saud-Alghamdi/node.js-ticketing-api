@@ -22,6 +22,13 @@ Ticket.init(
       allowNull: false,
       defaultValue: "Open",
     },
+    createdBy: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: User,
+        key: "id",
+      },
+    },
     assignedTo: {
       type: DataTypes.INTEGER,
       references: {
