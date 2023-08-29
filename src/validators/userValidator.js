@@ -16,58 +16,35 @@ const roleRegex = /^(user|admin|superadmin)$/;
 
 function validateName(name) {
   if (!nameRegex.test(name)) {
-    return {
-      isValid: false,
-      message: "Name must be between 3 and 20 characters and contain only letters.",
-    };
+    throw new Error("Name must be between 3 and 20 characters and contain only letters.");
   }
-
-  return { isValid: true };
 }
 
 async function validateEmail(email) {
   if (!emailRegex.test(email)) {
-    return {
-      isValid: false,
-      message: "Incorrect Email format.",
-    };
+    throw new Error("Incorrect Email format.");
   }
 
   // Check if email already exists
   const user = await User.findOne({ where: { email: email } });
 
   if (user) {
-    return {
-      isValid: false,
-      message: "Email already exists.",
-    };
+    throw new Error("Email already exists.");
   }
-
-  return { isValid: true };
 }
 
 function validateRole(role) {
   if (!roleRegex.test(role)) {
-    return {
-      isValid: false,
-      message: "Role must be either user, admin, or superadmin.",
-    };
+    throw new Error("Role must be either user, admin, or superadmin.");
   }
-
-  return { isValid: true };
 }
 
 async function validateUserExists(id) {
   const user = await User.findOne({ where: { id: id } });
 
   if (!user) {
-    return {
-      isValid: false,
-      message: "User does not exist.",
-    };
+    throw new Error("User does not exist.");
   }
-
-  return { isValid: true };
 }
 
 module.exports = {
