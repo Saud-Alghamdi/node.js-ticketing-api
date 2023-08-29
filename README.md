@@ -7,6 +7,7 @@ This repository contains a Ticketing API built with Node.js and Express.js. It p
 - [Technologies](#technologies)
 - [Database Schema](#database-schema)
 - [API Endpoints](#api-endpoints)
+- [API Requests](#api-requests)
 - [API Responses](#api-responses)
 - [Setup and Installation](#setup-and-installation)
 
